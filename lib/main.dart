@@ -1,4 +1,4 @@
-import 'package:ChatScreen/ui/message_screen/message.dart';
+import 'package:chatscreen/ui/message_screen/message.dart';
 import 'package:flutter/material.dart';
 
 void main() {

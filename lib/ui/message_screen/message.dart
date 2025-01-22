@@ -1,7 +1,37 @@
+import 'package:chatscreen/model/message.dart';
 import 'package:flutter/material.dart';
 
-class MessageScreen extends StatelessWidget {
+class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
+
+  @override
+  _MessageScreenState createState() => _MessageScreenState();
+}
+
+class _MessageScreenState extends State<MessageScreen> {
+  List<Message> messages = [
+    Message(
+        content: "Hello! Jhon Abraham", time: "09:25 AM", isMyMessage: true),
+    Message(
+        content: "Hello ! Nazrul How are you?",
+        time: "09:25 AM",
+        isMyMessage: false),
+    Message(
+        content: "You did your job well!", time: "09:25 AM", isMyMessage: true),
+    Message(
+        content: "Have a great working week!",
+        time: "09:25 AM",
+        isMyMessage: false),
+    Message(content: "Yeah!", time: "09:25 AM", isMyMessage: true),
+  ];
+
+  // Ham them 1 Message vao list messages
+  void addMessage(String content, String time, bool isMyMessage) {
+    setState(() {
+      messages
+          .add(Message(content: content, time: time, isMyMessage: isMyMessage));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +42,17 @@ class MessageScreen extends StatelessWidget {
         children: [
           // thông tin người nhận tin nhắn (button back, tên, avt, trạng thái hoạt động, button call, button video call)
           _buildTopInformation(),
-          // _buildMyMessageSection("I love you"),
-          // _buildUserMessageSection("No xia xia"),
-          // _buildMessageInputSection(),
+
+          // Thêm listview tin nhắn
+          Expanded(
+              child: ListView.builder(
+            itemCount: messages.length,
+            itemBuilder: (context, index) {
+              final message = messages[index];
+              // xây dựng UI phần tin nhắn
+              return _buildMessageItem(message);
+            },
+          ))
         ],
       )),
     );
@@ -31,8 +69,8 @@ class MessageScreen extends StatelessWidget {
           _buildButtonBack(), // button back
           _buildUserAvt(), //user avt
           _buildUserInfo(), // tên, trạng thái hoạt động
-          _buildButtonCall(),
-          _buildButtonVideoCall(),
+          _buildButtonCall(), // button call
+          _buildButtonVideoCall(), // button call video
         ],
       ),
     );
@@ -59,7 +97,7 @@ class MessageScreen extends StatelessWidget {
   Widget _buildUserInfo() {
     return SizedBox(
         width: 165,
-        height: 40,
+        height: 46,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -76,6 +114,7 @@ class MessageScreen extends StatelessWidget {
                   style: TextStyle(
                       fontFamily: "Circular-Std",
                       fontSize: 12,
+                      color: const Color(0xFF797C7B),
                       fontWeight: FontWeight.w400),
                 ),
               )
@@ -99,9 +138,66 @@ class MessageScreen extends StatelessWidget {
       child: Image.asset("assets/images/video_call_icon.png"),
     );
   }
-// _buildMyMessageSection(String message) {}
-//
-// _buildUserMessageSection(String message) {}
-//
-// _buildMessageInputSection() {}
+
+  Widget _buildMessageItem(Message message) {
+    return Container(
+      alignment:
+          message.isMyMessage ? Alignment.centerRight : Alignment.centerLeft,
+      margin: message.isMyMessage
+          ? EdgeInsets.only(bottom: 30, right: 24)
+          : EdgeInsets.only(bottom: 30, left: 24),
+      child: Column(
+        children: [
+          _buildMessageContent(message), // Phan noi dung tin nhan
+          _buildMessageTime(message) // phan gio
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMessageContent(Message message) {
+    return Container(
+      height: 45,
+      padding: message.isMyMessage
+          ? EdgeInsets.only(top: 12, bottom: 12, right: 12, left: 14)
+          : EdgeInsets.only(top: 12, bottom: 12, right: 14, left: 12),
+      constraints: BoxConstraints(
+          maxWidth: 200, minHeight: 36), // dài nhất: 200, rộng ít nhất: 36
+      decoration: BoxDecoration(
+        color: message.isMyMessage ? Color(0xFF20A090) : Color(0xFFF2F7FB),
+        borderRadius: message.isMyMessage
+            ? BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(0),
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15))
+            : BorderRadius.only(
+                topLeft: Radius.circular(0),
+                topRight: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15)),
+      ),
+      child: Text(message.content,
+          style: TextStyle(
+              fontFamily: "Circular-Std",
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color:
+                  message.isMyMessage ? Color(0xFFFFFFFF) : Color(0xFF000E08))),
+    );
+  }
+
+  Widget _buildMessageTime(Message message) {
+    return Container(
+      margin: EdgeInsets.only(top: 8),
+      child: Text(
+        message.time,
+        style: TextStyle(
+            color: Color(0xFF797C7B),
+            fontSize: 10,
+            fontFamily: "Circular-Std",
+            fontWeight: FontWeight.w400),
+      ),
+    );
+  }
 }
