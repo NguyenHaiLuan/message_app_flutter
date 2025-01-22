@@ -1,16 +1,16 @@
 # firstapp
 
-A new Flutter project.
+------------------Thank for read readme file----------------------------
+===>  Here's some information about my project 
+===>  Display an module of Chat app: Message Screen
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+    File design of Chat app:
+https://www.figma.com/community/file/1171349248796492917
 
-A few resources to get you started if this is your first Flutter project:
+    Link git of project:
+https://github.com/NguyenHaiLuan/message_app_flutter.git
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    My git:
+https://github.com/NguyenHaiLuan
