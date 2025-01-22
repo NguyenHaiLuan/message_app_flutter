@@ -25,4 +25,33 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/
+    - assets/images/
+  fonts:
+    - family: Caros
+      fonts:
+        - asset: assets/fonts/cretype-Caros.otf
+        - asset: assets/fonts/cretype-Caros-Black.otf
+        - asset: assets/fonts/cretype-Caros-Black-Italic.otf
+        - asset: assets/fonts/cretype-Caros-Bold.otf
+        - asset: assets/fonts/cretype-Caros-Bold-Italic.otf
+        - asset: assets/fonts/cretype-Caros-ExtraBold.otf
+        - asset: assets/fonts/cretype-Caros-ExtraBold-Italic.otf
+        - asset: assets/fonts/cretype-Caros-ExtraLight.otf
+        - asset: assets/fonts/cretype-Caros-ExtraLight-Italic.otf
+        - asset: assets/fonts/cretype-Caros-Heavy.otf
+        - asset: assets/fonts/cretype-Caros-Heavy-Italic.otf
+        - asset: assets/fonts/cretype-Caros-Italic.otf
+        - asset: assets/fonts/cretype-Caros-Light.otf
+        - asset: assets/fonts/cretype-Caros-Light-Italic.otf
+        - asset: assets/fonts/cretype-Caros-Medium.otf
+        - asset: assets/fonts/cretype-Caros-Medium-Italic.otf
+        - asset: assets/fonts/cretype-Caros-Thin.otf
+        - asset: assets/fonts/cretype-Caros-Thin-Italic.otf
+    - family: Circular-Std
+      fonts:
+        - asset: assets/fonts/circular-std-medium-500.ttf
+        - asset: assets/fonts/CircularStd-Book.ttf
+
+
+
+
