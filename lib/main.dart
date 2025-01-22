@@ -1,4 +1,4 @@
-import 'package:firstapp/ui/message_screen/message.dart';
+import 'package:ChatScreen/ui/message_screen/message.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MessageScreen(),
+      home:
+          MessageScreen(), // chuyen den man hinh MessageScreen cua message.dart
     );
   }
 }
