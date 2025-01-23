@@ -1,5 +1,6 @@
 import 'package:chatscreen/model/message.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../call_screen/call.dart';
 
@@ -11,6 +12,9 @@ class MessageScreen extends StatefulWidget {
 }
 
 class _MessageScreenState extends State<MessageScreen> {
+  final messageController = TextEditingController();
+
+  //List tin nhan
   List<Message> messages = [
     Message(
         content: "Hello! Jhon Abraham", time: "09:25 AM", isMyMessage: true),
@@ -128,7 +132,7 @@ class _MessageScreenState extends State<MessageScreen> {
                   "Active now",
                   style: TextStyle(
                       fontFamily: "Circular-Std",
-                      fontSize: 12,
+                      fontSize: 13,
                       color: const Color(0xFF797C7B),
                       fontWeight: FontWeight.w400),
                 ),
@@ -201,7 +205,7 @@ class _MessageScreenState extends State<MessageScreen> {
       child: Text(message.content,
           style: TextStyle(
               fontFamily: "Circular-Std",
-              fontSize: 12,
+              fontSize: 13,
               fontWeight: FontWeight.w400,
               color:
                   message.isMyMessage ? Color(0xFFFFFFFF) : Color(0xFF000E08))),
@@ -249,6 +253,7 @@ class _MessageScreenState extends State<MessageScreen> {
   Widget _buildInputMessageFrame() {
     return Expanded(
       child: TextField(
+        controller: messageController,
         decoration: InputDecoration(
             //Hien thi icon o cuoi   // o dau = prefixIcon
             suffixIcon: Container(
@@ -275,22 +280,46 @@ class _MessageScreenState extends State<MessageScreen> {
                 borderRadius: BorderRadius.circular(20)),
             hintText: "Write your message",
             hintStyle: TextStyle(
-                fontSize: 12,
+                fontSize: 13,
                 color: Color(0xFF797C7B),
                 fontFamily: "Circular-Std",
                 fontWeight: FontWeight.w400)),
+        style: TextStyle(
+            fontSize: 13,
+            color: Color(0xFF0F0C22),
+            fontFamily: "Circular-Std",
+            fontWeight: FontWeight.w400),
       ),
     );
   }
 
   Widget _buildSendButton() {
-    return Container(
-      width: 40,
-      height: 40,
-      margin: EdgeInsets.only(right: 24, left: 16),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Color(0xFF20A090)),
-      child: Image.asset("assets/images/send_icon.png"),
+    return GestureDetector(
+      onTap: () {
+        if (messageController.text != "") {
+          // Lấy giờ hiện tại
+          DateTime now = DateTime.now();
+          // Định dạng giờ thành
+          String gio = DateFormat('h:mm a').format(now); // "6:09 PM"
+
+          // bao cho stfull biet can thay doi
+          setState(() {
+            messages.add(Message(
+                content: messageController.text, time: gio, isMyMessage: true));
+
+            // Đặt chữ trong text field lại ve rỗng
+            messageController.text = "";
+          });
+        }
+      },
+      child: Container(
+        width: 40,
+        height: 40,
+        margin: EdgeInsets.only(right: 24, left: 16),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20), color: Color(0xFF20A090)),
+        child: Image.asset("assets/images/send_icon.png"),
+      ),
     );
   }
 
