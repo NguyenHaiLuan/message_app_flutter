@@ -17,12 +17,20 @@ class _MessageScreenState extends State<MessageScreen> {
         time: "09:25 AM",
         isMyMessage: false),
     Message(
-        content: "You did your job well!", time: "09:25 AM", isMyMessage: true),
+        content: "You did your job well!", time: "09:26 AM", isMyMessage: true),
     Message(
         content: "Have a great working week!",
-        time: "09:25 AM",
+        time: "09:27 AM",
         isMyMessage: false),
-    Message(content: "Yeah!", time: "09:25 AM", isMyMessage: true),
+    Message(content: "Yeah!", time: "09:27 AM", isMyMessage: true),
+    Message(
+        content: "Can you speak Vietnamese?!",
+        time: "09:27 AM",
+        isMyMessage: false),
+    Message(content: "Yes! I can!", time: "09:28 AM", isMyMessage: true),
+    Message(
+        content: "Khi nào bạn nghỉ tết?", time: "09:29 AM", isMyMessage: false),
+    Message(content: "Sớm thôi!", time: "09:35 AM", isMyMessage: true),
   ];
 
   // Ham them 1 Message vao list messages
@@ -33,6 +41,7 @@ class _MessageScreenState extends State<MessageScreen> {
     });
   }
 
+  // Giao dien chinh
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,11 +55,12 @@ class _MessageScreenState extends State<MessageScreen> {
           // Thêm listview tin nhắn
           Expanded(
               child: ListView.builder(
+            reverse: true, //đảo ngược thứ tự hiển thị
             itemCount: messages.length,
             itemBuilder: (context, index) {
-              final message = messages[index];
+              final message = messages.reversed.toList()[index];
               // xây dựng UI phần tin nhắn
-              return _buildMessageItem(message);
+              return _buildMessageItem(message, index);
             },
           ))
         ],
@@ -139,17 +149,17 @@ class _MessageScreenState extends State<MessageScreen> {
     );
   }
 
-  Widget _buildMessageItem(Message message) {
+  Widget _buildMessageItem(Message message, int index) {
     return Container(
       alignment:
           message.isMyMessage ? Alignment.centerRight : Alignment.centerLeft,
       margin: message.isMyMessage
-          ? EdgeInsets.only(bottom: 30, right: 24)
-          : EdgeInsets.only(bottom: 30, left: 24),
+          ? EdgeInsets.only(bottom: 20, right: 24)
+          : EdgeInsets.only(bottom: 20, left: 24),
       child: Column(
         children: [
           _buildMessageContent(message), // Phan noi dung tin nhan
-          _buildMessageTime(message) // phan gio
+          _buildMessageTime(message) // build phan gio
         ],
       ),
     );
