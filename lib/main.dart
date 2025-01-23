@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:
-          MessageScreen(), // chuyen den man hinh MessageScreen cua message.dart
+      home: MessageScreen(),
+      debugShowCheckedModeBanner:
+          false, // chuyen den man hinh MessageScreen cua message.dart
     );
   }
 }

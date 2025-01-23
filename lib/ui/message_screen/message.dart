@@ -1,6 +1,8 @@
 import 'package:chatscreen/model/message.dart';
 import 'package:flutter/material.dart';
 
+import '../call_screen/call.dart';
+
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
 
@@ -135,11 +137,17 @@ class _MessageScreenState extends State<MessageScreen> {
   }
 
   Widget _buildButtonCall() {
-    return Container(
-      width: 24,
-      height: 24,
-      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-      child: Image.asset("assets/images/call_icon.png"),
+    return GestureDetector(
+      onTap: () {
+        // Xu li su kien khi nguoi dung an vao button call
+        onCallButtonClickHandled();
+      },
+      child: Container(
+        width: 24,
+        height: 24,
+        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+        child: Image.asset("assets/images/call_icon.png"),
+      ),
     );
   }
 
@@ -284,5 +292,14 @@ class _MessageScreenState extends State<MessageScreen> {
           borderRadius: BorderRadius.circular(20), color: Color(0xFF20A090)),
       child: Image.asset("assets/images/send_icon.png"),
     );
+  }
+
+  //chuyen sang man hinh CallScreen
+  void onCallButtonClickHandled() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CallScreen(),
+        ));
   }
 }
