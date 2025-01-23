@@ -182,12 +182,10 @@ class _MessageScreenState extends State<MessageScreen> {
 
   Widget _buildMessageContent(Message message) {
     return Container(
-      height: 45,
       padding: message.isMyMessage
           ? EdgeInsets.only(top: 12, bottom: 12, right: 12, left: 14)
           : EdgeInsets.only(top: 12, bottom: 12, right: 14, left: 12),
-      constraints: BoxConstraints(
-          maxWidth: 200, minHeight: 36), // dài nhất: 200, rộng ít nhất: 36
+      constraints: BoxConstraints(maxWidth: 200), // dài nhất: 200
       decoration: BoxDecoration(
         color: message.isMyMessage ? Color(0xFF20A090) : Color(0xFFF2F7FB),
         borderRadius: message.isMyMessage
@@ -203,6 +201,8 @@ class _MessageScreenState extends State<MessageScreen> {
                 bottomRight: Radius.circular(15)),
       ),
       child: Text(message.content,
+          softWrap: true, // xuống dòng khi không đủ không gian
+          overflow: TextOverflow.visible, // hiển thị toàn bộ nội dung
           style: TextStyle(
               fontFamily: "Circular-Std",
               fontSize: 13,
