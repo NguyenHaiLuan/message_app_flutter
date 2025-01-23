@@ -62,7 +62,10 @@ class _MessageScreenState extends State<MessageScreen> {
               // xây dựng UI phần tin nhắn
               return _buildMessageItem(message, index);
             },
-          ))
+          )),
+
+          // Xay dunwg UI phần nhập tin nhắn
+          _buildInputSection()
         ],
       )),
     );
@@ -208,6 +211,78 @@ class _MessageScreenState extends State<MessageScreen> {
             fontFamily: "Circular-Std",
             fontWeight: FontWeight.w400),
       ),
+    );
+  }
+
+  Widget _buildInputSection() {
+    return Container(
+      height: 90,
+      width: double.infinity,
+      margin: EdgeInsets.only(top: 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _buildButtonAttach(), // UI button dinh kem
+          _buildInputMessageFrame(), // UI khung nhap lieu
+          _buildSendButton(), // UI button send message
+        ],
+      ),
+    );
+  }
+
+  Widget _buildButtonAttach() {
+    return Container(
+      margin: EdgeInsets.only(left: 24, right: 11),
+      child: Image.asset("assets/images/attached_icon.png"),
+    );
+  }
+
+  Widget _buildInputMessageFrame() {
+    return Expanded(
+      child: TextField(
+        decoration: InputDecoration(
+            //Hien thi icon o cuoi   // o dau = prefixIcon
+            suffixIcon: Container(
+              width: 24,
+              height: 24,
+              margin: EdgeInsets.only(right: 8),
+              child: Image.asset("assets/images/show_icon_icon.png"),
+            ),
+            filled: true,
+            fillColor: Color(0xFFF3F6F6),
+            enabledBorder: OutlineInputBorder(
+                // Khi text field duoc hien thi len
+                borderSide: BorderSide(width: 1, color: Color(0xFFF3F6F6)),
+                borderRadius: BorderRadius.circular(20)),
+            focusedBorder: OutlineInputBorder(
+              // Khi duoc focus
+              borderSide: BorderSide(color: Color(0xFFF3F6F6), width: 2.0),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            border: OutlineInputBorder(
+                // khung mac dinh
+                borderSide: BorderSide(
+                    width: 1, color: Color(0xFFF3F6F6)), // custom canh
+                borderRadius: BorderRadius.circular(20)),
+            hintText: "Write your message",
+            hintStyle: TextStyle(
+                fontSize: 12,
+                color: Color(0xFF797C7B),
+                fontFamily: "Circular-Std",
+                fontWeight: FontWeight.w400)),
+      ),
+    );
+  }
+
+  Widget _buildSendButton() {
+    return Container(
+      width: 40,
+      height: 40,
+      margin: EdgeInsets.only(right: 24, left: 16),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20), color: Color(0xFF20A090)),
+      child: Image.asset("assets/images/send_icon.png"),
     );
   }
 }
